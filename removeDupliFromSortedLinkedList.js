@@ -23,7 +23,34 @@ class ListNode {
  * @param {ListNode} head
  * @return {ListNode}
  */
-const deleteDuplicates = function (head) {};
+const deleteDuplicates = function (head) {
+  let current = head;
+  while (current != null) {
+    let tmp = current;
+    while (tmp != null && current.val == tmp.val) {
+      tmp = tmp.next;
+    }
 
-const result = deleteDuplicates();
-console.log(result);
+    current.next = tmp;
+    current = current.next;
+  }
+
+  return head;
+};
+
+function printList(list) {
+  let curr = list;
+  while (curr != null) {
+    console.log(curr.val);
+    curr = curr.next;
+  }
+}
+
+let list = new ListNode(1);
+list.next = new ListNode(1);
+list.next.next = new ListNode(2);
+list.next.next.next = new ListNode(3);
+list.next.next.next.next = new ListNode(3);
+
+const result = deleteDuplicates(list);
+printList(result);
